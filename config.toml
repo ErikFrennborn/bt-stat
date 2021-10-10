@@ -1,0 +1,6 @@
+# List of devices, earlier device will be check first.
+# So for performance reason place more common devices first,
+# allowing the execution to terminated earlier.
+
+# List of devices, a device is a display name and a mac address.
+devices = [['XM3','CC:98:8B:4A:07:31']]

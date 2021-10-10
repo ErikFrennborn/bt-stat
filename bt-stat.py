@@ -3,6 +3,8 @@
 import subprocess
 from shutil import which
 import sys
+import toml
+import pathlib
 
 
 class BTdevice():
@@ -19,11 +21,11 @@ def msghandler(args):
     (message, _) = subprocess.Popen(args,stdout=subprocess.PIPE).communicate()
     return message.decode('utf-8')
 
-# List of devices, earlier device will be check first.
-# So for performance reason place more common devices first,
-# allowing the execution to terminated earlier.
+bt_devices = []
+config = toml.load(pathlib.Path(__file__).parent.resolve() /"config.toml")
+for device in config["devices"]:
+    bt_devices.append(BTdevice(*device))
 
-bt_devices = [BTdevice(name='XM3', mac='CC:98:8B:4A:07:31')]
 
 def main(argv):
     if len(argv) == 0:

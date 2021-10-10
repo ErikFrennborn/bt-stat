@@ -1,0 +1,2 @@
+# Ignore so that different contributes override configured devices
+config.toml
